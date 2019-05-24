@@ -47,8 +47,16 @@ public final class View implements IView, Runnable {
 				return ControllerOrder.Deutsch;
 			case KeyEvent.VK_I:
 				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_LEFT:
+				return ControllerOrder.Left;
+			case KeyEvent.VK_RIGHT:
+				return ControllerOrder.Right;
+			case KeyEvent.VK_UP:
+				return ControllerOrder.Up;
+			case KeyEvent.VK_DOWN:
+				return ControllerOrder.Down;
 			default:
-				return ControllerOrder.English;
+				return null;
 		}
 	}
 
@@ -57,6 +65,7 @@ public final class View implements IView, Runnable {
 	 *
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
+	@Override
 	public void printMessage(final String message) {
 		this.viewFrame.printMessage(message);
 	}
@@ -66,6 +75,7 @@ public final class View implements IView, Runnable {
 	 *
 	 * @see java.lang.Runnable#run()
 	 */
+	@Override
 	public void run() {
 		this.viewFrame.setVisible(true);
 	}
