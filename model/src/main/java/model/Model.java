@@ -1,11 +1,9 @@
 package model;
 
-import java.sql.SQLException;
 import java.util.Observable;
 
+import contract.IElement;
 import contract.IModel;
-import entity.HelloWorld;
-
 /**
  * The Class Model.
  *
@@ -14,39 +12,24 @@ import entity.HelloWorld;
 public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
-	private HelloWorld helloWorld;
+	private IElement[][] onTheBoard;
 
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.helloWorld = new HelloWorld();
+		super();
+		//this.loadMap(code);
 	}
 
-	/**
-     * Gets the hello world.
-     *
-     * @return the hello world
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage()
-	 */
-	public HelloWorld getHelloWorld() {
-		return this.helloWorld;
+
+	@Override
+	public IElement getXY(int x, int y) {
+		return this.onTheBoard[x][y];
 	}
 
-	/**
-     * Sets the hello world.
-     *
-     * @param helloWorld
-     *            the new hello world
-     */
-	private void setHelloWorld(final HelloWorld helloWorld) {
-		this.helloWorld = helloWorld;
-		this.setChanged();
-		this.notifyObservers();
+	private void setXY(final IElement element, final int x, final int y) {
+		this.onTheBoard[x][y]=element;
 	}
 
 	/**
@@ -60,15 +43,21 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadHelloWorld(final String code) {
-		try {
+	@Override
+	public void loadMap(final String code) {
+		/*try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
 			this.setHelloWorld(daoHelloWorld.find(code));
 		} catch (final SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
+	@Override
+	public void setMobileHasChanged() {
+		this.setChanged();
+		this.notifyObservers();
+	}
 	/**
      * Gets the observable.
      *
@@ -79,7 +68,10 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getObservable()
 	 */
+	@Override
 	public Observable getObservable() {
 		return this;
 	}
+
+
 }

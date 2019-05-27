@@ -1,11 +1,13 @@
 package view;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
 import contract.IController;
+import contract.IMobile;
 import contract.IModel;
 import contract.IView;
 
@@ -18,7 +20,23 @@ public final class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+    /** The Constant squareSize. */
+    private static final int squareSize = 50;
 
+    /** The Constant closeView. */
+    private Rectangle        closeView;
+
+    /** The road. */
+    private IModel            model;
+
+    /** My vehicle. */
+    private IMobile          player;
+
+    /** The view. */
+    private int              view;
+
+    /** The order performer. */
+    private IController  orderPerformer;
 	/**
 	 * Instantiates a new view.
 	 *
@@ -39,14 +57,6 @@ public final class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
 			case KeyEvent.VK_LEFT:
 				return ControllerOrder.Left;
 			case KeyEvent.VK_RIGHT:
@@ -56,7 +66,7 @@ public final class View implements IView, Runnable {
 			case KeyEvent.VK_DOWN:
 				return ControllerOrder.Down;
 			default:
-				return null;
+				return ControllerOrder.NOP;
 		}
 	}
 

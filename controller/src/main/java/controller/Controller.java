@@ -39,7 +39,7 @@ public final class Controller implements IController {
 	 */
 	@Override
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Ici se lancera le jeu");
 	}
 
 	/**
@@ -76,20 +76,8 @@ public final class Controller implements IController {
 	@Override
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
-			case English:
-				this.model.loadHelloWorld("GB");
-				break;
-			case Francais:
-				this.model.loadHelloWorld("FR");
-				break;
-			case Deutsch:
-				this.model.loadHelloWorld("DE");
-				break;
-			case Indonesia:
-				this.model.loadHelloWorld("ID");
-				break;
 			case Left:
-				this.view.printMessage("Left");
+				System.out.println("Left");
 				break;
 			case Right:
 				System.out.println("Right");
