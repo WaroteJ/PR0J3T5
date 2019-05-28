@@ -1,8 +1,8 @@
 package controller;
 
 import contract.ControllerOrder;
+import contract.IBoulderDashModel;
 import contract.IController;
-import contract.IModel;
 import contract.IView;
 
 /**
@@ -14,7 +14,7 @@ public final class Controller implements IController {
 	private IView		view;
 
 	/** The model. */
-	private IModel	model;
+	private IBoulderDashModel	model;
 
 	/**
 	 * Instantiates a new controller.
@@ -24,7 +24,7 @@ public final class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model) {
+	public Controller(final IView view, final IBoulderDashModel model) {
 		this.setView(view);
 		this.setModel(model);
 	}
@@ -42,15 +42,7 @@ public final class Controller implements IController {
 		this.view.printMessage("Ici se lancera le jeu");
 	}
 
-	/**
-     * Sets the view.
-     *
-     * @param pview
-     *            the new view
-     */
-	private void setView(final IView pview) {
-		this.view = pview;
-	}
+
 
 	/**
 	 * Sets the model.
@@ -58,10 +50,28 @@ public final class Controller implements IController {
 	 * @param model
 	 *          the new model
 	 */
-	private void setModel(final IModel model) {
+	public IBoulderDashModel getModel() {
+		return this.model;
+	}
+	
+	private void setModel(final IBoulderDashModel model) {
 		this.model = model;
 	}
 
+	public IView getView() {
+		return this.view;
+	}
+	/**
+     * Sets the view.
+     *
+     * @param pview
+     *            the new view
+     */
+	
+	private void setView(final IView pview) {
+		this.view = pview;
+	}
+	
 	/**
      * Order perform.
      *

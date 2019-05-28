@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.Observable;
 
 import contract.IElement;
@@ -10,22 +11,24 @@ import contract.IModel;
  *
  * @author Jean-Aymeric Diet
  */
-public final class Model extends Observable implements IModel {
+public class Model extends Observable implements IModel {
 
-	/** The helloWorld. */
+	private int width = 25;
+	private int height = 25;
+	
 	private IElement[][] onTheBoard;
 
 	/**
 	 * Instantiates a new model.
 	 */
-	public Model() {
+	public Model(final String code) {
 		super();
-		//this.loadMap(code);
+		this.loadMap(code);
 	}
 
 
 	/**
-     * Load hello world.
+     *
      *
      * @param code
      *            the code
@@ -37,14 +40,34 @@ public final class Model extends Observable implements IModel {
 	 */
 	@Override
 	public void loadMap(final String code) {
-		/*try {
+		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setHelloWorld(daoHelloWorld.find(code));
+			//this.setHelloWorld(daoHelloWorld.find(code));
 		} catch (final SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
+	public int getWidth() {
+		return width;
+	}
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
+	public int getHeight() {
+		return height;
+	}
+
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+
 	@Override
 	public IElement getXY(int x, int y) {
 		return this.onTheBoard[x][y];

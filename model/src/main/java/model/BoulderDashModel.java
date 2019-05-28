@@ -15,7 +15,7 @@ public class BoulderDashModel implements IBoulderDashModel {
 	
     public BoulderDashModel(final String fileName, final int myPlayerStartX, final int myPlayerStartY)
             throws IOException {
-        this.setModel(new Model());
+        this.setModel(new Model(fileName));
         this.setMyPlayer(new Player(myPlayerStartX, myPlayerStartY, this.getModel()));
     }
 	

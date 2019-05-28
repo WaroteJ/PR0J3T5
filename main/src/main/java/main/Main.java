@@ -4,8 +4,12 @@
  */
 package main;
 
+import java.io.IOException;
+
+import contract.IBoulderDashModel;
+import contract.IController;
 import controller.Controller;
-import model.Model;
+import model.BoulderDashModel;
 import view.View;
 
 /**
@@ -19,12 +23,13 @@ public abstract class Main {
      * The main method.
      *
      * @param args
-     *            the arguments
+     *            the argumentsz
+     * @throws IOException 
      */
-    public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
+    public static void main(final String[] args) throws IOException {
+        final IBoulderDashModel model = new BoulderDashModel("lvl1.txt", 1, 1);
+        final View view = new View(model.getModel(),model.getMyPlayer());
+        final IController controller = new Controller(view, model);
         view.setController(controller);
 
         controller.control();
