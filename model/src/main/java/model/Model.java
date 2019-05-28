@@ -4,6 +4,7 @@ import java.util.Observable;
 
 import contract.IElement;
 import contract.IModel;
+
 /**
  * The Class Model.
  *
@@ -22,15 +23,6 @@ public final class Model extends Observable implements IModel {
 		//this.loadMap(code);
 	}
 
-
-	@Override
-	public IElement getXY(int x, int y) {
-		return this.onTheBoard[x][y];
-	}
-
-	private void setXY(final IElement element, final int x, final int y) {
-		this.onTheBoard[x][y]=element;
-	}
 
 	/**
      * Load hello world.
@@ -52,7 +44,16 @@ public final class Model extends Observable implements IModel {
 			e.printStackTrace();
 		}*/
 	}
+	
+	@Override
+	public IElement getXY(int x, int y) {
+		return this.onTheBoard[x][y];
+	}
 
+	private void setXY(final IElement element, final int x, final int y) {
+		this.onTheBoard[x][y]=element;
+	}
+	
 	@Override
 	public void setMobileHasChanged() {
 		this.setChanged();

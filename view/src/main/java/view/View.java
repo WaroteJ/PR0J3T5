@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
@@ -42,9 +43,15 @@ public final class View implements IView, Runnable {
 	 *
 	 * @param model
 	 *          the model
+	 * @throws IOException 
 	 */
-	public View(final IModel model) {
+	public View(final IModel model, final IMobile player) throws IOException {
 		this.viewFrame = new ViewFrame(model);
+		this.setView(10);
+		this.setModel(model);
+		this.setPlayer(player);
+		this.getPlayer().getSprite().loadImage();
+		this.setCloseView(new Rectangle(0,this.getPlayer().getY(),16,10));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -79,7 +86,56 @@ public final class View implements IView, Runnable {
 	public void printMessage(final String message) {
 		this.viewFrame.printMessage(message);
 	}
+	
+	
+    public IModel getModel() {
+		return this.model;
+	}
 
+	public void setModel(IModel model) {
+		this.model = model;
+	}
+
+	public IMobile getPlayer() {
+		return this.player;
+	}
+
+	public void setPlayer(IMobile player) {
+		this.player = player;
+	}
+
+	private int getView() {
+        return this.view;
+    }
+
+    /**
+     * Sets the view.
+     *
+     * @param view
+     *            the new view
+     */
+    private void setView(final int view) {
+        this.view = view;
+    }
+
+    /**
+     * Gets the close view.
+     *
+     * @return the close view
+     */
+    private Rectangle getCloseView() {
+        return this.closeView;
+    }
+
+    /**
+     * Sets the close view.
+     *
+     * @param closeView
+     *            the new close view
+     */
+    private void setCloseView(final Rectangle closeView) {
+        this.closeView = closeView;
+    }
 	/*
 	 * (non-Javadoc)
 	 *

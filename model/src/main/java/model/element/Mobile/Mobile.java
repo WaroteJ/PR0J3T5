@@ -42,9 +42,8 @@ abstract class Mobile extends Element implements IMobile {
      * @param permeability
      *            the permeability
      */
-    Mobile(final Sprite sprite, final IModel model, final Permeability permeability) {
+    Mobile(final Sprite sprite, final Permeability permeability) {
         super(sprite, permeability);
-        this.setModel(model);
         this.position = new Point();
     }
 
@@ -62,8 +61,8 @@ abstract class Mobile extends Element implements IMobile {
      * @param permeability
      *            the permeability
      */
-    Mobile(final int x, final int y, final Sprite sprite, final IModel model, final Permeability permeability) {
-        this(sprite, model, permeability);
+    Mobile(final int x, final int y, final Sprite sprite, final Permeability permeability) {
+        this(sprite, permeability);
         this.setX(x);
         this.setY(y);
     }
